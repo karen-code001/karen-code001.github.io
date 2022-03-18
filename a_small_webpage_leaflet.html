@@ -10,10 +10,17 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
 	<style>
+		#text {
+			background-color:#F8F8F8;
+			color:black;
+			text-align:left;
+			padding:0px;
+		}
+		
 		html, body {
 			height: 100%;
 			margin: 0;
-			background-color: white;
+			background-color: #F8F8F8;
 			
 		}
 	</style>
@@ -22,18 +29,40 @@
 </head>
 
 
-<body style="color:gray;">
-  &nbsp;&nbsp;&nbsp;&nbsp;Hey, friends！  &nbsp;&nbsp;&nbsp;&nbsp; try to click on the page?<br>  
-  &nbsp;&nbsp;&nbsp;&nbsp;This webpage is created by KarenLee, just for fun, powered by leaflet. Hope you will have fun with it. 
+<body style="color:gray;"  onload="myOnload()">
+	<div id="text" style="color:gray;">
+		<p id="readme" style="color:#333333;">&nbsp;&nbsp;&nbsp;&nbsp;Hello, friends！<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;This webpage is created by KarenLee, just for fun, powered by leaflet. Hope you will have fun with it. 
+		</p>
+	</div>
+	<div id="div_music" style="width:30%; margin: right;color:white;">
+		<audio id="music_GoodbyeCherryBlossom" src="./data/musics/再见樱花-武大2002级本科生.mp3" loop preload="auto">
+			您的浏览器不支持html audio 功能
+		</audio>
+	</div>
+
+	<script>
+
+		//浏览器似乎会自动屏蔽 刚打开网页时，无任何操作的自动播放。反正下面这段网页加载完成时执行的函数并不能成功自动播放音乐，alert如果不注释是能执行的。
+		function myOnload()
+		{
+			let music_GoodbyeCherryBlossom = document.getElementById("music_GoodbyeCherryBlossom");
+			music_GoodbyeCherryBlossom.play();
+
+			//alert("页面加载完成");
+		}
+
+	</script>
 </body>
 
 
 
 <body>
 
-<div id="map" style="width: 98%; height: 90%;margin: auto"></div>
+<div id="map" style="width: 98%; height: 88%; margin: auto"></div>
 
 <script>
+	
 
 	var map = L.map('map').setView([33.05, 115.25], 13);  
 
@@ -46,7 +75,7 @@
 		zoomOffset: -1
 	}).addTo(map);
 
-	
+	var music_GoodbyeCherryBlossom = document.getElementById("music_GoodbyeCherryBlossom");
 	
 	
 	var dogIcon = L.Icon.extend({
@@ -74,6 +103,13 @@
 	var num_MapClick=1;
 	function onMapClick(e) 
 	{
+		//首次点击地图的时候，开始播放音乐
+		if (num_MapClick==1)
+		{
+			music_GoodbyeCherryBlossom.play();
+		}
+
+
 		//switch(num_MapClick%10)
 		switch(parseInt(Math.random()*20, 10))
 		{
