@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Web Clock by KarenLee</title>
+		<link rel="icon" href="imgs/XWY_avatar.png">
 	</head>
 	<!-- <body onload="my_displayDate()"> -->  
 	<!-- body自动刷新的频率非常高，大概10ms一次，远远超出显示时间的要求了，使用这个刷新率有些浪费资源 -->
@@ -26,6 +27,9 @@
 		
 		<div style="height: 50px; margin: auto;" >
 			<p></p>
+			<audio id="music_GoodbyeCherryBlossom" src="./data/musics/再见樱花-武大2002级本科生.mp3" loop preload="auto">
+				您的浏览器不支持html audio 功能
+			</audio>
 		</div>
 		
 		<!-- color: deeppink -->
@@ -197,10 +201,16 @@ function my_setInspiration(){
 	{
 		return "-_-";
 	}
-
-
 }
 
+function myOnload()
+{
+	let music_GoodbyeCherryBlossom = document.getElementById("music_GoodbyeCherryBlossom");
+	music_GoodbyeCherryBlossom.play();
+
+	//alert("页面加载完成");
+}
+	
 </script>
 
 <style>
