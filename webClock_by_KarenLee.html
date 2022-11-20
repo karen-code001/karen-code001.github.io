@@ -8,8 +8,8 @@
 	<!-- body自动刷新的频率非常高，大概10ms一次，远远超出显示时间的要求了，使用这个刷新率有些浪费资源 -->
 	<body style="background-color:rgba(255,250,245,1);">
 		<div id="text" style="font-size:12px; margin: auto; text-align: center;" >
-			<p id="readme" style="color: lightgray">&nbsp;&nbsp;&nbsp;&nbsp;Hello, friends！This webpage is created by
-				KarenLee, specifically for XWY.
+			<p id="readme" style="color: lightgray"  href="https://bing.ioliu.cn/"  target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;Hello, friends！
+				<a href="https://karen-code001.github.io/"  target="_blank">This webpage is created by KarenLee</a>, specifically for XWY.
 			</p>
 		</div>
 		
@@ -39,22 +39,28 @@
 		<p id="div_Inspiration" style="font-size:50px; color:skyblue; margin: auto; text-align: center;">	
 		</p>
 		
-<!-- 		<button type="button" onclick="clearInspiration()" style="margin:0 auto;float: right;">done</button>
-		</div> -->
+		<button id="button_show_Inspiration" type="button" onclick="clearInspiration()" style="margin:0 auto;float: right;">show off</button>
+		</div>
 
 		<div style="height: 300px; margin: auto;" >
 			<p></p>
 		</div>
 				
 		<div id="div_image" style="text-align: center;">
+			<a href="https://cn.bing.com/"  target="_blank">
 			<img src="https://s.cn.bing.net/th?id=OHR.OrcusMouth_ZH-CN7303142999_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&qlt=50" width=95% alt="必应搜索每日图片">
+			</a>
 		</div>
 
-		<div id="div_image" style="text-align: center;">
-			<img src="https://cn.bing.com/th?id=OHR.CosmicCliffs_ZH-CN9555199651_1920x1200.jpg&rf=LaDigue_1920x1200.jpg&qlt=50" width=95% alt="必应搜索每日图片">
+		<div id="div_image"   style="text-align: center;">
+			<a href="https://bing.ioliu.cn/"  target="_blank">
+				<img src="https://cn.bing.com/th?id=OHR.CosmicCliffs_ZH-CN9555199651_1920x1200.jpg&rf=LaDigue_1920x1200.jpg&qlt=50" width=95% alt="必应搜索每日图片">
+			</a>
 		</div>
 		
 		<script>
+			var show_Inspiration=true;    //直接定义在<script>里的是当前页面的全局变量，可以直接在任何地方访问，或者通过window.命名空间访问
+
 			//setInterval("document.getElementById('div_date_time').innerHTML=new Date().toLocaleString();", 100)
 			setInterval("document.getElementById('div_date').innerHTML=my_getDate();", 100)   //每100ms重复一次
 			setInterval("document.getElementById('div_time').innerHTML=my_getTime();", 100)   //每100ms重复一次
@@ -76,12 +82,14 @@ function checkTime(i)
 function my_getDate(){
 	var now=new Date();
 	var y=now.getFullYear();
-	var M=now.getMonth();
+	var M=now.getMonth()+1;    //getMonth()	返回月份（从 0-11），所以要 +1 才 等于真实月份
 	var d=now.getDate();
 	
+
 	//在小于10的数字前加一个 “0”
 	M=checkTime(M);
 	d=checkTime(d);
+	
 	
 	//console.log(y+"-"+M+"-"+d);
 	
@@ -108,66 +116,91 @@ function my_getTime(){
 	return (h+":"+m+":"+s);
 }
 
-function my_setInspiration(){
-	var now=new Date();
-	var h=now.getHours();
-	var m=now.getMinutes();
-	var s=now.getSeconds();
-	var inspiration="Have a nice day.";
-	
-	if(h>=5 & h<8){
-		inspiration="今天会是开心的一天呢！";
-	}
-	
-	if((h*60+m>=11*60+30) & h<13){
-		inspiration="记得吃午饭哦！";
-	}
-	
-	if(h*60+m==13*60+14){
-		inspiration="我喜欢你，正如你喜欢我！";
-	}
-	
-	if(h>=15 & h<17){
-		inspiration="好好学习和工作，不要想我哦！[爱你]";
-	}
-	
-	if(h>=17 & (h*60+m<18*60+30)){
-		inspiration="记得吃晚饭哦！";
-	}
-	
-	if(h>=20 & h<22){
-		if(0==(h*3600+m*60+s)%17){
-			inspiration="或者，想趁着夜色和我一起散步吗？";
-		}
-		else if(1==(h*3600+m*60+s)%17){
-			inspiration="或者，想趁着夜色和我一起散步吗？";
-		}
-		else if(2==(h*3600+m*60+s)%17){
-			inspiration="或者，想趁着夜色和我一起散步吗？";
-		}
-		else{
-			inspiration="好好学习和工作，不要想我哦！[爱你]";
-		}
-	}
-	
-	if(h==23){
-			inspiration="Dear, good night! <br> Love you for ever.";
-	}
-	
-	if(h==0){
-			inspiration="亲爱的快睡觉吧，时间不早了哦！【严肃脸】";
-	}
-	
-	if(h>=1 & h<5 ){
-			inspiration="亲爱的还没睡着，是在想我吗？<br>要不找我聊聊天？";
-	}
-	
-	return inspiration
-}
 
 function clearInspiration(){
-	alert("not support now");
+	//alert("not support now");
+	//alert(window.show_Inspiration);
+	if(window.show_Inspiration)
+	{
+		document.getElementById('button_show_Inspiration').innerHTML="show on";
+		show_Inspiration=false;
+	}
+	else
+	{
+		document.getElementById('button_show_Inspiration').innerHTML="show off";
+		show_Inspiration=true;
+	}
+
+	//alert(show_Inspiration);
 }
+
+function my_setInspiration(){
+
+	if(show_Inspiration)
+	{
+		var now=new Date();
+		var h=now.getHours();
+		var m=now.getMinutes();
+		var s=now.getSeconds();
+		var inspiration="Have a nice day.";
+		
+		if(h>=5 & h<8){
+			inspiration="今天会是开心的一天呢！";
+		}
+		
+		if((h*60+m>=11*60+30) & h<13){
+			inspiration="记得吃午饭哦！";
+		}
+		
+		if(h*60+m==13*60+14){
+			inspiration="我喜欢你，正如你喜欢我！";
+		}
+		
+		if(h>=15 & h<17){
+			inspiration="好好学习和工作，不要想我哦！[爱你]";
+		}
+		
+		if(h>=17 & (h*60+m<18*60+30)){
+			inspiration="记得吃晚饭哦！";
+		}
+		
+		if(h>=20 & h<22){
+			if(0==(h*3600+m*60+s)%17){
+				inspiration="或者，想趁着夜色和我一起散步吗？";
+			}
+			else if(1==(h*3600+m*60+s)%17){
+				inspiration="或者，想趁着夜色和我一起散步吗？";
+			}
+			else if(2==(h*3600+m*60+s)%17){
+				inspiration="或者，想趁着夜色和我一起散步吗？";
+			}
+			else{
+				inspiration="好好学习和工作，不要想我哦！[爱你]";
+			}
+		}
+		
+		if(h==23){
+				inspiration="Dear, good night! <br> Love you for ever.";
+		}
+		
+		if(h==0){
+				inspiration="亲爱的快睡觉吧，时间不早了哦！【严肃脸】";
+		}
+		
+		if(h>=1 & h<5 ){
+				inspiration="亲爱的还没睡着，是在想我吗？<br>要不找我聊聊天？";
+		}
+		
+		return inspiration
+	}
+	else
+	{
+		return "-_-";
+	}
+
+
+}
+
 </script>
 
 <style>
@@ -177,4 +210,11 @@ function clearInspiration(){
 		text-align: center;
 		padding: 5px;
 	} */
+
+	a{
+		text-decoration: none;
+		color:inherit;
+	}
+
+
 </style>
