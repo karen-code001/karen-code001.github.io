@@ -43,7 +43,7 @@
 		<p id="div_Inspiration" style="font-size:50px; color:skyblue; margin: auto; text-align: center;">	
 		</p>
 		
-		<button id="button_show_Inspiration" type="button" onclick="clearInspiration()" style="margin:0 auto;float: right;">show off</button>
+		<button id="button_show_Inspiration" type="button" onclick="clearInspiration()" style="margin:0 auto;float: right;">off</button>
 		</div>
 
 		<div style="height: 300px; margin: auto;" >
@@ -126,12 +126,12 @@ function clearInspiration(){
 	//alert(window.show_Inspiration);
 	if(window.show_Inspiration)
 	{
-		document.getElementById('button_show_Inspiration').innerHTML="show on";
+		document.getElementById('button_show_Inspiration').innerHTML="on";
 		show_Inspiration=false;
 	}
 	else
 	{
-		document.getElementById('button_show_Inspiration').innerHTML="show off";
+		document.getElementById('button_show_Inspiration').innerHTML="off";
 		show_Inspiration=true;
 	}
 
