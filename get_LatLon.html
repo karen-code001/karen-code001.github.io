@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	
+	<title>get_LatLng</title>
+	<link rel="icon" href="https://www.whu.edu.cn/__local/2/93/CE/5D08442CD54BE47483CAB43E3B7_68B00D8E_185D7.png">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+	
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+	
+<!-- 似乎<head>标签里定义的<style>标签，和下面<div>标签是配对使用的，通过名字匹配（<sty1e>里是#后面的name，<div>里是id属性） -->
+	<style>
+		#text {
+			background-color:black;
+			color:white;
+			text-align:center;
+			padding:5px;
+		}
+		html, body {
+			height: 100%;
+			margin: 0;
+			background-color: black;
+				
+		}
+	</style>
+
+
+</head>
+
+<body >
+	<div id="text" style="margin: auto",color="gray">
+	<p id="readme" style="color: gray">&nbsp;&nbsp;&nbsp;&nbsp;Hello, friends！This webpage is created by KarenLee, just for fun, powered by leaflet. <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;You could get the position（Lat, Lng） of a point by click on the map.
+	</p>
+	</div>
+</body>
+
+
+
+<body>
+
+	<div id="map" style="width: 98%; height: 85%; margin: auto"></div>
+	
+	<script>
+		
+	
+		var map = L.map('map').setView([30.548489, 114.381185], 13);  
+	
+		var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+				'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+			id: 'mapbox/streets-v11',
+			tileSize: 512,
+			zoomOffset: -1
+		}).addTo(map);
+	
+		var music_GoodbyeCherryBlossom = document.getElementById("music_GoodbyeCherryBlossom");
+		
+		
+		var dogIcon = L.Icon.extend({
+		options: {
+			iconUrl: 'https://www.baidu.com/img/baidu_85beaf5496f291521eb75ba38eacbd87.svg',
+			iconSize:     [40, 40],
+			popupAnchor:  [-0, -18]
+		}});
+		
+		
+		var marker = L.marker([30.562297, 114.380817]).addTo(map);
+		marker.bindPopup("Click to get the position（Lat, Lng） of a point").openPopup();
+		
+		var marker_click;
+		var num_MapClick=1;
+		function onMapClick(e) 
+		{	
+			marker_click = L.marker(e.latlng,{iconSize:[5,1]}).addTo(map);  
+			marker_click.bindPopup(e.latlng.toString()+"<br>order_MapClick: "+num_MapClick.toString()).openPopup();
+	
+			num_MapClick=num_MapClick+1;
+		}
+		
+		map.on('click', onMapClick);
+		
+		
+	
+	
+	</script>
+
+</body>
+</html>
