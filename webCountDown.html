@@ -38,7 +38,7 @@
 			<input id="startButton" type="button"  onclick="showCountDown()" value="开始">
 		</div>
 
-		<div id="div_countdown_starttime" style="color:lightgray; margin: auto; text-align: center;" >
+		<div id="div_countdown_starttime_endtime" style="color:lightgray; margin: auto; text-align: center;" >
 		</div>
 		
 
@@ -86,6 +86,16 @@ function checkTime(i)
 	}
 	return i;
 }
+	
+//将未输入的倒计时单位对应变量从空置为零，以便输出查看
+function checkInputTime(i)
+{
+	if(i==''){
+		i='0'+i;
+	}
+	return i;
+}
+
 
 function my_getDate(){
 	var now=new Date();
@@ -154,7 +164,7 @@ function showCountDown()
 	{
 		show_CountDown=false;
 		document.getElementById("div_countdowm").style.color= '#00bf00';
-		document.getElementById("div_countdown_starttime").innerHTML="<br>";
+		document.getElementById("div_countdown_starttime_endtime").innerHTML="<br>";
 		document.getElementById('startButton').value="开始";
 
 		console.log("\n\n\n取消倒计时 at:");
@@ -164,11 +174,22 @@ function showCountDown()
 	else
 	{
 		window.startTime=new Date();
-		document.getElementById("div_countdown_starttime").innerHTML="<br>start at: " + window.startTime.toLocaleString();
 		hours=document.getElementById('input_h').value;
 		minutes=document.getElementById('input_m').value;
 		seconds=document.getElementById('input_s').value;
 		is_end_CountDown=false;
+
+		//将未输入的倒计时单位对应变量从空置为零，以便输出查看
+		hours=checkInputTime(hours);
+		minutes=checkInputTime(minutes);
+		seconds=checkInputTime(seconds);
+		
+
+		startTime_milliseconds = startTime.getTime();
+		//不能直接相加，默认会当作字符串来处理的，变成了字符的拼接，有bug。  需要先转数字再加   （除加法外的其他运算好像会自动转数字进行运算，然后再转回字符串）
+		endTime = new Date(startTime_milliseconds + (Number(hours*3600) + Number(minutes*60) + Number(seconds))*1000);
+		document.getElementById("div_countdown_starttime_endtime").innerHTML="<br>start at: " + window.startTime.toLocaleString() + 
+		            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end at: "+ endTime.toLocaleString();
 
 
 		console.log("\n\n\n开始倒计时 at:");
@@ -271,9 +292,6 @@ function my_setInspiration()
 			inspiration="记得吃午饭哦！";
 		}
 		
-		if(h*60+m==13*60+14){
-			inspiration="我喜欢你，正如你喜欢我！";
-		}
 		
 		if(h>=15 & h<17){
 			inspiration="好好学习和工作哦！";
