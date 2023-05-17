@@ -45,6 +45,8 @@
 		
 		<button id="button_show_Inspiration" type="button" onclick="clearInspiration()" style="margin:0 auto;float: right;">off</button>
 		</div>
+		<button id="button_set_InspirationDefault" type="button" onclick="setInspirationDefault_prompt()" style="margin:0 auto;float: right;">set</button>
+		</div>
 
 		<div style="height: 300px; margin: auto;" >
 			<p></p>
@@ -201,6 +203,19 @@ function my_setInspiration(){
 	{
 		return "-_-";
 	}
+}
+
+//增加了设置默认Inspiration语句的功能：点击按钮后弹出输入框，输入你想要的Inspiration后点击确认即可。
+function setInspirationDefault_prompt(){
+
+	var str_inspiration = prompt("请输入你喜欢的Inspiration语句作为默认值显示: ","-_-")  //prompt(text,defaultText);
+ 	if (str_inspiration!=null && str_inspiration!="")
+    {
+    	window.inspiration_default = str_inspiration;
+		console.log("\n\n\n");
+		console.log(new Date());
+		console.log("set Default Inspiration as: "+str_inspiration+"\n\n\n");
+    }
 }
 
 function myOnload()
