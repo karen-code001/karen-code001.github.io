@@ -66,7 +66,8 @@
 		
 		<script>
 			var show_Inspiration=true;    //直接定义在<script>里的是当前页面的全局变量，可以直接在任何地方访问，或者通过window.命名空间访问
-
+		        var inspiration_default = "-_-";
+			
 			//setInterval("document.getElementById('div_date_time').innerHTML=new Date().toLocaleString();", 100)
 			setInterval("document.getElementById('div_date').innerHTML=my_getDate();", 100)   //每100ms重复一次
 			setInterval("document.getElementById('div_time').innerHTML=my_getTime();", 100)   //每100ms重复一次
@@ -201,7 +202,7 @@ function my_setInspiration(){
 	}
 	else
 	{
-		return "-_-";
+		return window.inspiration_default;
 	}
 }
 
