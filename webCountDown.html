@@ -213,7 +213,9 @@ function my_CountDown(startTime,hours,minutes,seconds){
 		var now=new Date();
 		var TimePass=Math.floor((now.getTime()-startTime.getTime())/1000);    //Date.getTime() 返回自 1970 年 1 月 1 日午夜以来的毫秒数
 		
-		var CountDown = hours*3600+minutes*60+seconds -TimePass;
+		//var CountDown = hours*3600 + minutes*60 + seconds - TimePass;
+		//不能直接相加，默认会当作字符串来处理的，变成了字符的拼接，有bug。  需要先转数字再加   （除加法外的其他运算好像会自动转数字进行运算，然后再转回字符串）
+		var CountDown = Number(hours*3600) + Number(minutes*60) + Number(seconds) - TimePass; //1、Number(字符串)；2、“parseInt(字符串)”；3、“parseFloat(字符串)”
 		
 
 		if(0==CountDown && false==window.is_end_CountDown)
