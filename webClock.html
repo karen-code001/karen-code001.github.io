@@ -159,43 +159,26 @@ function my_setInspiration(){
 			inspiration="记得吃午饭哦！";
 		}
 		
-		if(h*60+m==13*60+14){
-			inspiration="我喜欢你，正如你喜欢我！";
-		}
+
 		
 		if(h>=15 & h<17){
-			inspiration="好好学习和工作，不要想我哦！[爱你]";
+			inspiration="好好学习和工作！";
 		}
 		
 		if(h>=17 & (h*60+m<18*60+30)){
 			inspiration="记得吃晚饭哦！";
 		}
 		
-		if(h>=20 & h<22){
-			if(0==(h*3600+m*60+s)%17){
-				inspiration="或者，想趁着夜色和我一起散步吗？";
-			}
-			else if(1==(h*3600+m*60+s)%17){
-				inspiration="或者，想趁着夜色和我一起散步吗？";
-			}
-			else if(2==(h*3600+m*60+s)%17){
-				inspiration="或者，想趁着夜色和我一起散步吗？";
-			}
-			else{
-				inspiration="好好学习和工作，不要想我哦！[爱你]";
-			}
-		}
-		
 		if(h==23){
-				inspiration="Dear, good night! <br> Love you for ever.";
+				inspiration="Dear, good night!";
 		}
 		
 		if(h==0){
-				inspiration="亲爱的快睡觉吧，时间不早了哦！【严肃脸】";
+				inspiration="快睡觉吧，时间不早了哦！";
 		}
 		
 		if(h>=1 & h<5 ){
-				inspiration="亲爱的还没睡着，是在想我吗？<br>要不找我聊聊天？";
+				inspiration="还没睡着，是在想什么呢？";
 		}
 		
 		return inspiration
